@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hwe.one.tour.dao.ScoreDao" >
+
+	<!-- resultMap配置 -->
+	<resultMap type="Score" id="scoreResultMap">
+		<result property="userId" column="sc_u_id" />
+		<result property="sceneryId" column="sc_s_id" />
+		<result property="score" column="score"/>		
+	</resultMap>
+	
+	<insert id="addScore" parameterType="Score">
+		insert into score(sc_u_id, sc_s_id, score) values(#{userId}, #{sceneryId}, #{score})
+	</insert>
+	
+	<select id="selectScoreByUserAndScenery" parameterType="Integer" resultMap="scoreResultMap">
+		select * 
+		from score
+		where sc_u_id=#{userId} AND sc_s_id=#{sceneryId} 
+	</select>
+    
+ 
+</mapper>

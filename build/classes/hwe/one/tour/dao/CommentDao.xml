@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hwe.one.tour.dao.CommentDao">
+
+	<resultMap type="Comment" id="commentResultMap" >
+		<result property="userId"  column="u_id" />
+		<result property="sceneryId" column="s_id" />
+		<result property="comment" column="comment" />
+		<result property="date" column="comment_date" />
+	</resultMap>
+	
+	<select id="selectCommentBySceneryId" parameterType="Integer"  resultMap="commentResultMap">
+		select * from comment where s_id=#{scId}
+	</select>
+	
+	<insert id="addComment" parameterType="Comment">
+		insert into comment values(#{userId}, #{sceneryId}, #{comment}, #{date})
+	</insert>
+
+</mapper>
